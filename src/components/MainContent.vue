@@ -17,7 +17,7 @@
 
     <ul>
       <li v-for="(task, index) in tasksArray" :key="index">
-        {{ task }}
+        <item :id="index" :task="task" />
       </li>
     </ul>
   </div>
@@ -25,10 +25,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Item from "./Item.vue";
 
 export default defineComponent({
   name: "MainContent",
-  components: {},
+  components: {
+    item: Item,
+  },
   data() {
     return {
       formData: {
@@ -44,5 +47,6 @@ export default defineComponent({
 <style>
 ul {
   list-style-type: none;
+  padding: 0!important;
 }
 </style>
