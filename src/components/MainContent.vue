@@ -19,7 +19,7 @@
 
     <ul>
       <li v-for="(task, index) in tasksArray" :key="index">
-        <item :id="index" :task="task" />
+        <item :id="index" :task="task" :deleteTask="deleteTask" />
       </li>
     </ul>
   </div>
@@ -48,8 +48,20 @@ export default defineComponent({
   },
   methods: {
     createNewTask(this: { formData: IFormData; tasksArray: string[] }) {
-      this.tasksArray.push(this.formData.task);
-      this.formData.task = "";
+      if (this.formData.task.trim() !== "") {
+        this.tasksArray.push(this.formData.task);
+        this.formData.task = "";
+      }
+    },
+    deleteTask(this: { tasksArray: string[] }, e: MouseEvent) {
+      const target = e.target as HTMLElement;
+      const parentNode = target.parentNode;
+
+      if (parentNode instanceof HTMLElement) {
+        const taskId = parentNode.id;
+
+        this.tasksArray.splice(parseInt(taskId), 1);
+      }
     },
   },
 });

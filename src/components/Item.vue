@@ -1,18 +1,26 @@
 <template>
   <div class="card my-2 task-list-item">
     <p>{{ task }}</p>
-    <div class="btn btn-danger btn-supr">X</div>
+    <div class="btn btn-danger btn-supr" @click="deleteTask">X</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "MainContent",
   props: {
-    task: String,
+    task: {
+      type: String,
+      require: true,
+    },
+    deleteTask: {
+      type: Function as PropType<(event: MouseEvent) => void>,
+      require: true,
+    },
   },
+  
 });
 </script>
 
@@ -30,6 +38,6 @@ export default defineComponent({
 }
 
 p {
-  margin-bottom: 0!important;
+  margin-bottom: 0 !important;
 }
 </style>
