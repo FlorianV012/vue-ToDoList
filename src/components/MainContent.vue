@@ -12,7 +12,9 @@
           v-model="formData.task"
         />
       </div>
-      <button class="btn btn-primary my-3">Create task</button>
+      <button class="btn btn-primary my-3" @click.prevent="createNewTask">
+        Create task
+      </button>
     </form>
 
     <ul>
@@ -27,6 +29,10 @@
 import { defineComponent } from "vue";
 import Item from "./Item.vue";
 
+interface IFormData {
+  task: string;
+}
+
 export default defineComponent({
   name: "MainContent",
   components: {
@@ -36,17 +42,22 @@ export default defineComponent({
     return {
       formData: {
         task: "",
-      },
-      tasksArray: ["task 1", "task 2", "task 3"],
+      } as IFormData,
+      tasksArray: ["task 1", "task 2", "task 3"] as string[],
     };
   },
-  methods: {},
+  methods: {
+    createNewTask(this: { formData: IFormData; tasksArray: string[] }) {
+      this.tasksArray.push(this.formData.task);
+      this.formData.task = "";
+    },
+  },
 });
 </script>
 
 <style>
 ul {
   list-style-type: none;
-  padding: 0!important;
+  padding: 0 !important;
 }
 </style>
