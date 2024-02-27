@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>TODO List</h1>
+    <h1>To Do list</h1>
 
     <form>
       <div class="form-group">

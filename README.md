@@ -1,4 +1,6 @@
-# vue-ToDoList
+# To Do list
+
+This application was made with Vue & TypeScript.
 
 ## Project setup
 ```
